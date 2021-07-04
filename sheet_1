@@ -1,0 +1,32 @@
+    Sub full_Scrren()
+    
+' imvoicefullscreen
+On Error Resume Next
+   Application.DisplayFullScreen = True
+      
+    
+End Sub
+
+Sub normal_screem()
+ On Error Resume Next
+    Application.DisplayFullScreen = False
+End Sub
+
+
+
+
+
+Sub newlists()
+Call new_list
+
+End Sub
+
+
+
+
+
+Sub clear()
+    Sheets(1).Range("I18:I24").ClearContents
+End Sub
+
+
