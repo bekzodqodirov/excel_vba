@@ -1,0 +1,113 @@
+
+Sub new_list()
+
+    Dim exdate As Date
+    exdate = "01/01/2020"
+
+
+    If Date < exdate Then
+        
+
+        last_row = Sheets(2).Cells(Rows.Count, 1).End(xlUp).Row
+  
+
+    Dim x As Integer
+    
+    
+        i = Sheets(1).Range("L23").Value
+        
+        For x = 1 To i
+
+        
+           
+
+    
+                                    
+                
+                If sorov = vbNo Then 'do nothing for command no
+                ElseIf sorov = vbCancel Then 'do nothing for cancel
+                Else
+                            
+                    Dim strFileName As String
+                    Dim strFileExists As String
+                     
+                        strFileName = "C:\invoice\"
+                        strFileExists = Dir(strFileName)
+                     
+                       If strFileExists = "" Then
+                         MkDir "C:\invoice\"
+                       
+                            
+                        Else
+                            
+                        End If
+                        
+
+                                            
+                          On Error Resume Next
+                        
+                          Sheets(2).Cells((last_row) + (x), 1).Value = last_row + x
+                          Sheets(2).Cells((last_row) + (x), 2).Value = Sheets(1).Range("L8").Value           'INVOICE NO
+                          Sheets(2).Cells((last_row) + (x), 3).Value = Sheets(1).Range("L25").Value          'ADRESS
+                          Sheets(2).Cells((last_row) + (x), 4).Value = ""
+                          Sheets(2).Cells((last_row) + (x), 5).Value = Sheets(1).Cells(x + 6, 9).Value       'NET WEIGHT
+                          Sheets(2).Cells((last_row) + (x), 6).Value = ""
+                          Sheets(2).Cells((last_row) + (x), 7).Value = ""
+                          Sheets(2).Cells((last_row) + (x), 8).Value = Sheets(1).Range("L21").Value          'DATA ENTRY DATE
+                          Sheets(1).Range("L29").Value = Sheets(1).Cells(x + 6, 9).Value                     'net weight to print
+                          
+                          
+                          
+                          Sheets(3).ExportAsFixedFormat _
+                          Type:=xlTypePDF, Filename:= _
+                          "C:\invoice\" & Sheets(1).Range("L32").Value & ".pdf", _
+                          Quality:=xlQualityStandard, _
+                          IncludeDocProperties:=True, _
+                          IgnorePrintAreas:=False, _
+                          OpenAfterPublish:=False
+                            Sheets(1).Select
+                      
+    
+                
+                    Sheets(3).PrintOut copies:=Sheets(1).Range("L27").Value, preview:=False
+                    Sheets(1).Range("D2").Value = Sheets(1).Range("D2").Value + 1   'INVOICE NO 1 QOWIW
+                    
+                    
+                  
+ 
+                    
+                    
+            
+            End If
+            Next
+            
+        Else
+        MsgBox ("trial period tugadi tel: 0 539 628 75 70     yoki  telegram +82 10 4051 4146 ")
+        ThisWorkbook.Save
+        ActiveWorkbook.Close
+        End If
+
+    On Error Resume Next
+    MsgBox Sheets(1).Range("L23").Value & " ta karobkaga invoice yozildi!", vbOKOnly
+    On Error Resume Next
+    Call clear
+    
+    
+End Sub
+
+
+Sub clear()
+
+        Sheets(1).Range("I7:I56").ClearContents
+End Sub
+
+Sub hidesheets()
+    ThisWorkbook.Sheets(1).Visible = True
+    ThisWorkbook.Sheets(2).Visible = True
+    ThisWorkbook.Sheets(3).Visible = True
+    ThisWorkbook.Sheets(4).Visible = True
+    ThisWorkbook.Sheets(5).Visible = True
+    ThisWorkbook.Sheets(6).Visible = True
+    ThisWorkbook.Sheets(7).Visible = True
+End Sub
+
