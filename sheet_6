@@ -1,0 +1,92 @@
+Sub toza_new()
+
+
+ Dim exdate As Date
+    exdate = "09/30/2021"
+
+    If Date < exdate Then
+
+        last_row = Sheets(5).Cells(Rows.Count, 2).End(xlUp).Row
+        
+        
+         If sorov = vbNo Then 'do nothing for command no
+                ElseIf sorov = vbCancel Then 'do nothing for cancel
+                Else
+                            
+                    Dim strFileName As String
+                    Dim strFileExists As String
+                     
+                        strFileName = "C:\toza_invoice\"
+                        strFileExists = Dir(strFileName)
+                        
+                        
+                        If Dir(strFileName) = "" Then
+                        MkDir "C:\toza_invoice\"
+                        
+                            
+                        Else
+
+                        End If
+                        
+                        
+                        On Error Resume Next
+        
+                        
+                        Sheets(5).Cells(last_row + 1, 1).Value = ""                                         'No_ invoice
+                        
+                        Sheets(5).Cells(last_row + 1, 2).Value = Sheets(6).Range("P14").Value               'invoice No
+                        Sheets(5).Cells(last_row + 1, 3).Value = Sheets(6).Range("P13").Value               'weight
+                        
+                        Sheets(5).Cells(last_row + 1, 4).Value = Sheets(6).Range("P11").Value               'reciver adress
+                        Sheets(5).Cells(last_row + 1, 5).Value = Sheets(6).Range("P10").Value               'reciver phone
+                        Sheets(5).Cells(last_row + 1, 6).Value = Sheets(6).Range("P9").Value                'reciver name
+                        Sheets(5).Cells(last_row + 1, 8).Value = Sheets(6).Range("P15").Value               'today()
+
+
+                          
+                        Sheets(6).Range("B1:G44").ExportAsFixedFormat _
+                        Type:=xlTypePDF, Filename:= _
+                        "C:\toza_invoice\" & Sheets(6).Range("P14").Value & ".pdf", _
+                        Quality:=xlQualityStandard, _
+                        IncludeDocProperties:=True, _
+                        IgnorePrintAreas:=False, _
+                        OpenAfterPublish:=False
+                          Sheets(6).Select
+                          
+        
+                    
+                        Sheets(6).Range("B1:B44").PrintOut copies:=3, preview:=False
+                        Sheets(6).Range("F2").Value = Sheets(6).Range("F2").Value + 1   'INVOICE NO 1 QOWIW
+                        
+                    
+                  
+ 
+                    
+                    
+            
+                          End If
+                    Else
+        MsgBox ("trial period tugadi tel: 0 539 628 75 70     yoki  telegram +82 10 4051 4146 ")
+        ThisWorkbook.Save
+        ActiveWorkbook.Close
+        End If
+
+    On Error Resume Next
+    MsgBox " invoice yozildi!", vbOKOnly
+    
+    
+
+
+
+
+
+
+End Sub
+
+Sub toza_clear()
+    Sheets(6).Range("C15:D39").ClearContents
+    Sheets(6).Range("D5:G6").ClearContents
+    Sheets(6).Range("D8:G12").ClearContents
+    MsgBox ("ekran tozalandi")
+
+End Sub
