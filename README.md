@@ -5,3 +5,6 @@ kargo tizimida invoicelarni yozish un moljallangan dastur
 #excel_vba
 
 bazi bir featurelar yana qoshilish mukun password, user, yoki computer_id
+
+
+!!! bazi funksiyalar ishlamasa aloqaga chiqishingiz mumkun
